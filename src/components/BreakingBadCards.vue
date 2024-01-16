@@ -30,6 +30,10 @@ watch(page, async () => {
 
 <template>
    <div class="container">
+     <div class="button-container">
+            <button @click="page--">Back</button>
+            <button @click="page++">Next</button>
+        </div>
         <div class="cards">
             <Card 
             v-for="character in characters"
@@ -41,6 +45,8 @@ watch(page, async () => {
             :location="character.location.name"
             />
         </div>
+        
+       
    </div>
 
 
@@ -92,3 +98,21 @@ watch(page, async () => {
 }
 
 </style>
+
+<!-- ----------------------README ---------------------------
+
+theorically this part would have been about an api from Breaking Bad,
+however the api was down at the time of this project so i used a different
+one from Rick & Morty, that was the second part. 
+
+As a result some of the code is comment cause it was inttended to 
+the breaking bad app but due to the different endpoints in each api
+it doesn't work with this api, so there can be some parts of the
+code were things are not 100% accurate, like pagination, this api
+for the moment can only be paginated 20 elements at time but the
+template was inttented to have only 8 per page so i had to put the
+pagination buttons on top in order to be accesible. 
+
+I hope i can fix it on the next version of the project when we
+use the Rick and Morty api. 
+-->

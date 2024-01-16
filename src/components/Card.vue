@@ -13,16 +13,19 @@
 
 
 <template>
-    <NCard title="Card with Cover"> 
+    <NCard> 
         <template #cover>
             <img :src="image" alt="noImage">
         </template>
       <h3>{{name}}</h3>
       <p><b>Species: </b> {{species}}</p>
         <p><b>Location: </b>{{location}}</p>
-      <p v-for="(job, index) in occupation" :key="job">
-        {{job}} <span v-if="index < occupation.length - 1" >, </span>
-      </p>
+        <div class="jobs">
+             <p v-for="(job, index) in occupation" :key="job">
+                 {{job}} <span v-if="index < occupation.length - 1" >, </span>
+            </p>
+        </div>
+     
     </NCard>
 
 
@@ -34,7 +37,7 @@
 .n-card {
     width: 200px;
     margin:10px 20px;
-    height: 400px;
+   
 }
 .n-card img {
     height: 250px
