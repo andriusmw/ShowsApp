@@ -1,9 +1,22 @@
 <script setup>
     import axios from "axios"
+    import { ref, watch } from "vue"
+    const characters = ref(null)
+    const page = ref(0)
 
-const response = await axios.get("https://breakingbadapi.com/api/characters")
+const response = await axios.get("https://breakingbadapi.com/api/characters?limit=8")
 // specify the base url inside coloms + characters to get all characters
-console.log(response)
+characters.value = response.data
+//console.log(response)
+
+watch(page, async () => {
+    const res = await axios.get(`https://breakingbadapi.com/api/characters?limit=8&offset=8&offset=${page.value * 8}`);
+    characters.value = res.data
+    //console.log(res)
+
+} )
+
+
 </script>
 
 
@@ -11,6 +24,10 @@ console.log(response)
 <template>
     <div>
         <h1>  Breaking Bard cards </h1>
-        {{response}}
+        {{characters}}
+        <div>
+            <button @click="page = page++">Next</button>
+            <button @click="page = page--">Back</button>
+        </div>
     </div>
 </template>
