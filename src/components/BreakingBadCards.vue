@@ -31,7 +31,15 @@ watch(page, async () => {
 <template>
    <div class="container">
         <div class="cards">
-            <Card />
+            <Card 
+            v-for="character in characters"
+            :key="character.id"
+            :image="character.image"
+            :name="character.name"
+            :occupation="character.occupation"
+            :species="character.species"
+            :location="character.location.name"
+            />
         </div>
    </div>
 
