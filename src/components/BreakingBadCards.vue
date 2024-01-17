@@ -24,14 +24,14 @@ const response = await
 // specify the base url inside coloms + characters to get all characters
 characters.value = response.data.data.results
  //console.log("page = " + page.value)
-console.log(characters)
+//console.log(characters)
 
 watch(page, async () => {
     const res = await 
         axios.get(`${baseURL}/v1/public/characters?limit=8&offset=${page.value * 8}&ts=1&apikey=${apiKey}&hash=${hash}`);
     characters.value = res.data.data.results
    // console.log("page = " + page.value)
- console.log(characters)
+ //console.log(characters)
 
 } )
 

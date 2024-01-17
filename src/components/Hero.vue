@@ -15,8 +15,8 @@ const emitSelectedShow = () => {
 
 <template>
     <div class="hero">
-        <h1>{{isBreakingBad ? 'Breaking Bad': 'Rick and Morty'}}</h1>
-        <p @click="emitSelectedShow">{{isBreakingBad ? 'Rick and Morty': 'Breaking Bad'}}</p>
+        <h1>{{isBreakingBad ? 'Marvel': 'Rick and Morty'}}</h1>
+        <p @click="emitSelectedShow">{{isBreakingBad ? 'Rick and Morty': 'Marvel'}}</p>
     </div>
 </template>
 
