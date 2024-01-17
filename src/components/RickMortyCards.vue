@@ -1,30 +1,24 @@
 <script setup>
     import axios from "axios"
-    import { ref, watch, onMounted, onUpdated, onUnmounted, onBeforeMount } from "vue"
+    import { ref, watch, onMounted} from "vue"
     import Card from "./Card.vue"
 
-const page = ref(0)
+const characters = ref(null)
+const page = ref(1)
 
-// these are Hooks that active each time our app does certain things in its life cycle
-onMounted(() => {
-    console.log("Component is mounted")
+onMounted(async () => {
+    const response = await axios.get("https://rickandmortyapi.com/api/character")
+    characters.value = response.data.results
 })
 
-// onUpdated is equal than watch but for all the app, not only an specific item
-onUpdated(() => {
-      console.log("Component was updated")
-      // it needs to be rendered to apply its effect
-})
+watch(page, async () => {
+    const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`);
+    characters.value = res.data.results
+    //console.log("page = " + page.value)
+   // console.log(res)
 
+} )
 
-onUnmounted(() => {
-     console.log("Component was Unmounted")
-})
-
-
-onBeforeMount(() => {
-    console.log("Component is about to mount")
-})
 
 </script>
 
@@ -32,25 +26,29 @@ onBeforeMount(() => {
 
 <template>
    <div class="container">
-    <!--
+    
      <div class="button-container">
             <button @click="page--">Back</button>
             <button @click="page++">Next</button>
            
         </div>
-         -->
+         
         <div class="cards">
-            <!--
+         
+            
             <Card 
             v-for="character in characters"
             :key="character.id"
             :image="character.image"
             :name="character.name"
-            :occupation="character.occupation"
-            :species="character.species"
-            :location="character.location.name"
-            />
-            -->
+        
+            
+            
+            >
+                <p>{{character.species}}</p>
+                <p>{{character.location.name}}</p>
+            </Card>
+        
         </div>
         
        
@@ -74,7 +72,7 @@ onBeforeMount(() => {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    height: 700px
+    
 }
 .cards h3 {
     font-weight: bold;
