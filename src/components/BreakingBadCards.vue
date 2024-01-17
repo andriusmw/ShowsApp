@@ -12,14 +12,14 @@ const response = await axios.get("https://rickandmortyapi.com/api/character")
 
 // specify the base url inside coloms + characters to get all characters
 characters.value = response.data.results
- console.log("page = " + page.value)
-console.log(response)
+ //console.log("page = " + page.value)
+//console.log(response)
 
 watch(page, async () => {
     const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`);
     characters.value = res.data.results
-    console.log("page = " + page.value)
-    console.log(res)
+   // console.log("page = " + page.value)
+   // console.log(res)
 
 } )
 
