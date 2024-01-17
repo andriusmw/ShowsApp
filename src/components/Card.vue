@@ -13,10 +13,8 @@
   
     ])
 
-//console.log("image=" + image)
-// console.log("imagePath+Ext= " + imagePath + imageExt)
 const imgFull =`${imagePath}.${imageExt}`
-console.log(imgFull)
+//console.log(imgFull)
 </script>
 
 

@@ -19,7 +19,7 @@ const baseURL = "https://gateway.marvel.com:443"
 const apiKey = "f64582fc15b9d7e10b1eec158cdfd229"
 const hash = "43c14736770223d2203582fc40f332cf"
 const response = await 
-    axios.get(`${baseURL}/v1/public/characters?limit=9&offset=9&ts=1&apikey=${apiKey}&hash=${hash}`)
+    axios.get(`${baseURL}/v1/public/characters?limit=8&offset=8&ts=1&apikey=${apiKey}&hash=${hash}`)
 
 // specify the base url inside coloms + characters to get all characters
 characters.value = response.data.data.results
@@ -56,10 +56,12 @@ watch(page, async () => {
             >
            
 
-                <div class="jobs">
+                <div class="jobs ">
                      <p v-for="(url) in character.urls" :key="url">
-                          <b>{{url.type}}: </b>   {{url.url}} 
+                          <b>{{url.type}}: </b> <a :href="url.url" target="_blank"> Link </a> 
+                         
                     </p>
+                   
                 </div>
             </Card>
         </div>
@@ -84,7 +86,7 @@ watch(page, async () => {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    height: 700px
+   
 }
 .cards h3 {
     font-weight: bold;
@@ -95,6 +97,10 @@ watch(page, async () => {
 .jobs {
     display: flex;
     flex-wrap: wrap;
+}
+
+.jobs p{
+   margin-right: 50px;
 }
 .button-container {
     display: flex;
