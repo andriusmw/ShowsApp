@@ -14,10 +14,18 @@ const isBreakingBad = ref(true)
         :isBreakingBad="isBreakingBad"
         @selectShow="isBreakingBad = !isBreakingBad"
         ></Hero>
- <BreakingBadCards v-if="isBreakingBad" />
-  <RickMortyCards v-else />
+        <KeepAlive>
+         <BreakingBadCards v-if="isBreakingBad" />
+         <RickMortyCards v-else />
+       </KeepAlive>
 
- 
+      <!-- an example using the IS directive
+         <KeepAlive>
+           <Component :is="isBreakingBad ? BreakingBadCards : RickMortyCards" />
+         </KeepAlive>
+      -->
+
+
     </main>
 </template>
 
