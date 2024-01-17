@@ -2,19 +2,32 @@
     import{defineProps} from "vue"
 
 
-    const {image, name} = defineProps([
-        'image',
-        'name'
+
+    const {imagePath, name, imageExt, image} = defineProps([
+        'imagePath',
+        'name',
+        'imageExt',
+        'image'
+
     
   
     ])
+
+//console.log("image=" + image)
+// console.log("imagePath+Ext= " + imagePath + imageExt)
+const imgFull =`${imagePath}.${imageExt}`
+console.log(imgFull)
 </script>
 
 
 <template>
     <NCard> 
-        <template #cover>
+        <template #cover v-if="image !== undefined ">
             <img :src="image" alt="noImage">
+        </template>
+
+        <template #cover v-else>
+            <img :src="imgFull" alt="noImagePath" >
         </template>
       <h3>{{name}}</h3>
    

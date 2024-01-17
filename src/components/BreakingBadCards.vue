@@ -7,13 +7,24 @@
     const page = ref(1)
 
 // const response = await axios.get("https://breakingbadapi.com/api/characters?limit=8")
-// la api de breaking bad ya no funciona de modo que he tenido que adaptar el código a la api de rick y morty
-const response = await axios.get("https://rickandmortyapi.com/api/character")
+// la api de breaking bad ya no funciona de modo que he tenido que adaptar el código a la api de Marvel
+// Marvel: https://gateway.marvel.com:443/v1/public/characters?limit=8&offset=8&apikey=f64582fc15b9d7e10b1eec158cdfd229
+
+
+// hash = md5(1+privateKey+publickKey) = 43c14736770223d2203582fc40f332cf
+// private key is on my desktop it is not supossed to be shared however with this data it should work,
+// if not, just register on the MarevelApi website so you get your own keys.
+
+const baseURL = "https://gateway.marvel.com:443"
+const apiKey = "f64582fc15b9d7e10b1eec158cdfd229"
+const hash = "43c14736770223d2203582fc40f332cf"
+const response = await 
+    axios.get(`${baseURL}/v1/public/characters?limit=9&offset=9&ts=1&apikey=${apiKey}&hash=${hash}`)
 
 // specify the base url inside coloms + characters to get all characters
-characters.value = response.data.results
+characters.value = response.data.data.results
  //console.log("page = " + page.value)
-//console.log(response)
+console.log(response)
 
 watch(page, async () => {
     const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${page.value}`);
@@ -38,15 +49,16 @@ watch(page, async () => {
             <Card 
             v-for="character in characters"
             :key="character.id"
-            :image="character.image"
             :name="character.name"
+            :imagePath="character.thumbnail.path"
+            :imageExt="character.thumbnail.extension"
           
-            :species="character.species"
-            :location="character.location.name"
             >
+           
+
                 <div class="jobs">
-                     <p v-for="(job, index) in character.occupation" :key="job">
-                   {{job}} <span v-if="index < character.occupation.length - 1" >, </span>
+                     <p v-for="(url) in character.urls" :key="url">
+                          <b>{{url.type}}: </b>   {{url.url}} 
                     </p>
                 </div>
             </Card>
