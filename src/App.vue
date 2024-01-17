@@ -13,13 +13,15 @@ import RickMortyCards from "./components/RickMortyCards.vue"
           <BreakingBadCards />
     </template>
     <template #fallback>
-      <div>
-        <p>Loading...</p>
-      </div>
+     <div class="cards spinner">
+        <NSpin size="large"></NSpin>
+     </div>
+
     </template>
 
   </Suspense>
   <RickMortyCards />
+
  
     </main>
 </template>
@@ -29,5 +31,13 @@ import RickMortyCards from "./components/RickMortyCards.vue"
 
 
 <style scoped>
+.cards {
+  height: 700px;
+  background-color: rgb(27,26,26);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
 </style>

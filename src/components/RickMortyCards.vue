@@ -25,15 +25,8 @@ watch(page, async () => {
 
 
 <template>
-   <div class="container">
-    
-     <div class="button-container">
-            <button @click="page--">Back</button>
-            <button @click="page++">Next</button>
-           
-        </div>
-         
-        <div class="cards">
+   <div class="container">     
+        <div v-if="characters" class="cards">
          
             
             <Card 
@@ -50,6 +43,14 @@ watch(page, async () => {
             </Card>
         
         </div>
+        <div v-else class="cards spinner">
+            <NSpin size="large"></NSpin>
+        </div>
+        <div class="button-container">
+            <button @click="page--">Back</button>
+            <button @click="page++">Next</button>
+           
+        </div>
         
        
    </div>
@@ -60,7 +61,7 @@ watch(page, async () => {
 </template>
 
 <style scoped>
-    /* Breaking Bad Styles */
+    /* Rick and Morty Styles */
 
 .container {
     background-color: rgb(27, 26, 26);
