@@ -14,8 +14,8 @@ const isBreakingBad = ref(true)
         :isBreakingBad="isBreakingBad"
         @selectShow="isBreakingBad = !isBreakingBad"
         ></Hero>
- <BreakingBadCards></BreakingBadCards>
-  <RickMortyCards />
+ <BreakingBadCards v-if="isBreakingBad" />
+  <RickMortyCards v-else />
 
  
     </main>
